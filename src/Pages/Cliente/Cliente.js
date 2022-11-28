@@ -12,7 +12,7 @@ import ListaClientes from '../../Components/ListaClientes/ListaClientes';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import Tooltip from '@mui/material/Tooltip';
-import { formatToCEP, isCEP } from 'brazilian-values';
+import { formatToCEP, isCEP, formatToCPFOrCNPJ, isCPFOrCNPJ, formatToPhone, isPhone } from 'brazilian-values';
 
 
 function TabPanel(props) {
@@ -50,9 +50,15 @@ function a11yProps(index) {
 }
 
 const Cliente = () => {
+
   const [value, setValue] = useState(0);
   const [cep, setCep] = useState('')
+  const [cpf, setCpf] = useState('')
+  const [testCpfOrCnpj, setTestCpfOrCnpj] = useState(false)
+  const [testPhone, setTestPhone] = useState(false)
   const [endereco, setEndereco] = useState('')
+
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -60,11 +66,36 @@ const Cliente = () => {
   const { register, handleSubmit, reset,  errors } = useForm();
 
     const onSubmit = data => {        
-        // axios.post("https://gabriellgomess.com/pesquisa/api/cadastrar.php?p=1", data)
-        // .then(res => {
-        //     // response            
-        // })  
-        console.log(data)     
+        axios.post("https://gabriellgomess.com/asaas/cadastrar.php?p=1", data)
+        .then(res => {
+            // response 
+              console.log(res)       
+            })  
+         
+    };
+
+    const handleFormatPhone = (event) => {
+      var phone = event.target.value
+      var phoneFormatado = formatToPhone(phone)
+      event.target.value = phoneFormatado
+      if(isPhone(phoneFormatado)){
+        setTestPhone(true)
+      }else{
+        setTestPhone(false)
+      }
+    }
+
+    const handleFormatCpf = (event) => {
+      var cpf = event.target.value;
+      var cpfFormatado = formatToCPFOrCNPJ(cpf);
+      event.target.value = cpfFormatado;
+      setCpf(cpfFormatado);
+      if(isCPFOrCNPJ(cpfFormatado)){
+        setTestCpfOrCnpj(true)
+      }else{
+        setTestCpfOrCnpj(false)
+      }
+     
     };
 
     const handleFormatCep = (event) => {
@@ -108,8 +139,8 @@ const Cliente = () => {
       <TabPanel value={value} index={1}>      
         <Box onSubmit={handleSubmit(onSubmit)} component="form" sx={{'& > :not(style)': { m: 1, width: '25ch' }, }} noValidate autoComplete="off" >      
           <TextField {...register('nome')} id="nome" label="Nome" variant="standard" />
-          <TextField {...register('cpf')} id="cpf" label="CPF" variant="standard" />
-          <TextField {...register('phone')} id="phone" label="Fone" variant="standard" />
+          <TextField {...register('cpf')} id="cpf" inputProps={{ maxLength: 18 }} label="CPF/CNPJ" color={testCpfOrCnpj == true ? "success" : ""} onKeyUp={(event)=>handleFormatCpf(event)} variant="standard" />
+          <TextField {...register('phone')} id="phone" inputProps={{ maxLength: 16 }}  label="Fone" color={testPhone == true ? "success" : ""} onKeyUp={(event)=>handleFormatPhone(event)} variant="standard" />
           <TextField {...register('email')} id="email" label="E-mail" variant="standard" />          
           <TextField {...register('mobile')} id="mobile" label="Celular" variant="standard" />
           <TextField {...register('cep')} id="cep" inputProps={{ maxLength: 9 }} onKeyUp={(event)=>handleFormatCep(event)} label="CEP" variant="standard" />
