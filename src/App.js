@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MyContext from './context/myContext';
 import { Routes, Route } from 'react-router-dom';
 import MenuBar from './Components/MenuBar/MenuBar';
-import Footer from './Components/Footer/Footer'
 import Home from './Pages/Home/Home';
 import About from './Pages/About/About';
 import Cliente from './Pages/Cliente/Cliente';
@@ -36,9 +35,10 @@ const theme = createTheme({
 });
 
 const App = () => {
+  const [clientes, setClientes] = useState([]);
   return (
+    <MyContext.Provider value={{ clientes, setClientes }}>
     <ThemeProvider theme={theme}>
-    <MyContext.Provider value={{ name: 'John Doe' }}>
     <div>
       <MenuBar />
       <Container fixed>
@@ -49,10 +49,9 @@ const App = () => {
         <Route path="/about" element={<About />} />
       </Routes>
       </Container>
-      {/* <Footer /> */}
     </div>
-    </MyContext.Provider>
     </ThemeProvider>
+    </MyContext.Provider>
     
   );
 }

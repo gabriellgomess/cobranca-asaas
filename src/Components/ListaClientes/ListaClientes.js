@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ClientsTable from '../ClientsTable/ClientsTable';
-
+import MyContext from '../../context/myContext';
 
 const ListaClientes = () => {
-    const[clientes, setClientes] = useState([])
+    const { clientes, setClientes } = useContext(MyContext);
     useEffect(()=>{
         axios.get('https://gabriellgomess.com/asaas/cadastrar.php?p=2')
         .then((response) => {

@@ -13,6 +13,8 @@ import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import Tooltip from '@mui/material/Tooltip';
 import { formatToCEP, isCEP, formatToCPFOrCNPJ, isCPFOrCNPJ, formatToPhone, isPhone } from 'brazilian-values';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function TabPanel(props) {
@@ -67,9 +69,36 @@ const Cliente = () => {
 
     const onSubmit = data => {        
         axios.post("https://gabriellgomess.com/asaas/cadastrar.php?p=1", data)
+        
         .then(res => {
-            // response 
-              console.log(res)       
+          console.log(res.data)
+          if(res.data === "Cadastrado com sucesso!"){
+            toast.success('Dados inseridos, obrigado!', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                onClose: () => { window.location.reload(); }
+                });
+        }else{
+            toast.error('Ops! Algo deu errado!', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                onClose: () => { window.location.reload(); }
+                });
+        }
+        
+                    
             })  
          
     };
@@ -151,15 +180,25 @@ const Cliente = () => {
           <TextField {...register('cidade')} id="cidade" label="Cidade" variant="standard" value={endereco.localidade || ''} />
           <TextField {...register('estado')} id="estado" label="Estado" variant="standard" value={endereco.uf || ''} />
           <TextField {...register('emailAdicional')} id="emailAdicional" label="Email adicional" variant="standard" />
-          <TextField {...register('observacoes')} id="observacoes" label="Observações" variant="standard" />
-        </Box>
-        <Box sx={{marginTop: '30px'}}>
+          <TextField {...register('observacoes')} id="observacoes" label="Observações" variant="standard" />          
+          <Box sx={{marginTop: '30px'}}>
           <Button type="submit" variant="contained">Cadastrar</Button>
-        </Box>      
+        </Box>   
+        </Box>
+           
       </TabPanel>
-      {/* <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel> */}
+      <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
     </Box>
   );
 }
