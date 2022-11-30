@@ -59,9 +59,9 @@ export default function FormDialog(props) {
     props.setOpen(false);
   };
 
-  const handleEditContact = () => {
+  const handleEditClient = () => {
     
-    axios.put("https://gabriellgomess.com/api_php/update.php", {
+    axios.put(`https://gabriellgomess.com/asaas/cadastrar.php?p=3&id=${props.id}`, {
         id:editValues.id,
         dateCreated:editValues.dateCreated,
         name:editValues.name,
@@ -92,48 +92,24 @@ export default function FormDialog(props) {
         state:editValues.state,
         country:editValues.country   
     }).then(() => {
-      props.setListContato(
-        props.listContato?.map((value) => {
-          return value.id === editValues.id
-            ? {
-                id:editValues.id,
-                dateCreated:editValues.dateCreated,
-                name:editValues.name,
-                email:editValues.email,
-                company:editValues.company,
-                phone:editValues.phone,
-                mobilePhone:editValues.mobilePhone,
-                address:editValues.address,
-                addressNumber:editValues.addressNumber,
-                complement:editValues.complement,
-                province:editValues.province,
-                postalCode:editValues.postalCode,
-                cpfCnpj:editValues.cpfCnpj,
-                personType:editValues.personType,
-                deleted:editValues.deleted,
-                additionalEmails:editValues.additionalEmails,
-                externalReference:editValues.externalReference,
-                notificationsDisabled:editValues.notificationsDisabled,
-                observations:editValues.observations,
-                municipalInscription:editValues.municipalInscription,
-                stateInscription:editValues.stateInscription,
-                canDelete:editValues.canDelete,
-                cannotDeleteReason:editValues.cannotDeleteReason,
-                canEdit:editValues.canEdit,
-                cannotEditReason:editValues.cannotEditReason,
-                foreigtCustomer:editValues.foreigtCustomer,
-                city:editValues.city,
-                state:editValues.state,
-                country:editValues.country   
-              }
-            : value;
-        })
+        toast.warn('Cliente deletado!', {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            onClose: () => { window.location.reload(); }
+            });
+       
       );
-    });
+    };
     handleClose();
   };
 
-  const handleDeleteContact = () => {
+  const handleDeleteClient = () => {
     axios.get(`https://gabriellgomess.com/asaas/cadastrar.php?p=3&id=${props.id}`)
     .then((response) => {
         toast.warn('Cliente deletado!', {
@@ -215,10 +191,10 @@ export default function FormDialog(props) {
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button color="primary" onClick={() => handleDeleteContact()}>
+          <Button color="primary" onClick={() => handleDeleteClient()}>
             Excluir
           </Button>
-          <Button color="primary" onClick={() => handleEditContact()}>
+          <Button color="primary" onClick={() => handleEditClient()}>
             Salvar
           </Button>
         </DialogActions>
