@@ -104,8 +104,8 @@ export default function FormDialog(props) {
             onClose: () => { window.location.reload(); }
             });
        
-      );
-    };
+        })
+    
     handleClose();
   };
 
