@@ -58,6 +58,7 @@ export default function ClientsTable(props) {
   };
   return (
     <>
+    {props.clientes.length > 0 ? (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
@@ -70,7 +71,7 @@ export default function ClientsTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.clientes.length === 0 ? <LinearProgress /> : props.clientes.map((row) => (
+          {props.clientes.map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -87,7 +88,7 @@ export default function ClientsTable(props) {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer>) : (<LinearProgress />)}
     <ToastContainer
       position="top-right"
       autoClose={5000}

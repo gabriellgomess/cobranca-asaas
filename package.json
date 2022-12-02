@@ -1,5 +1,6 @@
 {
   "name": "cobrancas-asaas",
+  "homepage": "https://gabriellgomess.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +14,7 @@
     "axios": "^1.2.0",
     "brazilian-values": "^0.12.0",
     "react": "^18.2.0",
+    "react-credit-cards": "^0.8.3",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.5",
     "react-input-mask": "^3.0.0-alpha.2",

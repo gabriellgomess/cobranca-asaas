@@ -1,0 +1,11 @@
+.cartao{
+    display: flex;
+    margin-top: 80px;
+}
+
+.container-form-card{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    
+}
