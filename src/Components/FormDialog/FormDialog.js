@@ -16,52 +16,54 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function FormDialog(props) {
-    const [editValues, setEditValues] = useState({
-        id:props.id,
-        dateCreated:props.dateCreated,
-        name:props.name,
-        email:props.email,
-        company:props.company,
-        phone:props.phone,
-        mobilePhone:props.mobilePhone,
-        address:props.address,
-        addressNumber:props.addressNumber,
-        complement:props.complement,
-        province:props.province,
-        postalCode:props.postalCode,
-        cpfCnpj:props.cpfCnpj,
-        personType:props.personType,
-        deleted:props.deleted,
-        additionalEmails:props.additionalEmails,
-        externalReference:props.externalReference,
-        notificationsDisabled:props.notificationsDisabled,
-        observations:props.observations,
-        municipalInscription:props.municipalInscription,
-        stateInscription:props.stateInscription,
-        canDelete:props.canDelete,
-        cannotDeleteReason:props.cannotDeleteReason,
-        canEdit:props.canEdit,
-        cannotEditReason:props.cannotEditReason,
-        foreigtCustomer:props.foreigtCustomer,
-        city:props.city,
-        state:props.state,
-        country:props.country
+  
+  const [editValues, setEditValues] = useState({
+        id: props.id,
+        dateCreated: props.dateCreated,
+        name: props.name,
+        email: props.email,
+        company: props.company,
+        phone: props.phone,
+        mobilePhone: props.mobilePhone,
+        address: props.address,
+        addressNumber: props.addressNumber,
+        complement: props.complement,
+        province: props.province,
+        postalCode: props.postalCode,
+        cpfCnpj: props.cpfCnpj,
+        personType: props.personType,
+        deleted: props.deleted,
+        additionalEmails: props.additionalEmails,
+        externalReference: props.externalReference,
+        notificationsDisabled: props.notificationsDisabled,
+        observations: props.observations,
+        municipalInscription: props.municipalInscription,
+        stateInscription: props.stateInscription,
+        canDelete: props.canDelete,
+        cannotDeleteReason: props.cannotDeleteReason,
+        canEdit: props.canEdit,
+        cannotEditReason: props.cannotEditReason,
+        foreigtCustomer: props.foreigtCustomer,
+        city: props.city,
+        state: props.state,
+        country: props.country
     });
 
-  const handleChangeValues = (values) => {
-    setEditValues((prevValues) => ({
-      ...prevValues,
-      [values.target.id]: values.target.value,
-    }));
-  };
+    const handleChangeValues = (values) => {
+      setEditValues((prevValues) => ({
+        ...prevValues,
+        [values.target.id]: values.target.value,
+      }));
+      
+    };
 
   const handleClose = () => {
     props.setOpen(false);
   };
-
+  console.log("Name: ",editValues.name);
   const handleEditClient = () => {
     
-    axios.put(`https://gabriellgomess.com/asaas/cadastrar.php?p=3&id=${props.id}`, {
+    axios.put(`https://gabriellgomess.com/asaas/cadastrar.php?p=4`, {
         id:editValues.id,
         dateCreated:editValues.dateCreated,
         name:editValues.name,
@@ -92,7 +94,7 @@ export default function FormDialog(props) {
         state:editValues.state,
         country:editValues.country   
     }).then(() => {
-        toast.warn('Cliente deletado!', {
+        toast.warn('Cliente atualizado!', {
             position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -127,7 +129,7 @@ export default function FormDialog(props) {
     })
     handleClose();
   };
-
+  console.log(editValues);
 
   return (
     <div>
