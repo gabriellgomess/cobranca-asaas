@@ -168,10 +168,10 @@ const Cliente = () => {
       <TabPanel value={value} index={1}>      
         <Box onSubmit={handleSubmit(onSubmit)} component="form" sx={{'& > :not(style)': { m: 1, width: '25ch' }, }} noValidate autoComplete="off" >      
           <TextField {...register('nome')} id="nome" label="Nome" variant="standard" />
-          <TextField {...register('cpf')} id="cpf" inputProps={{ maxLength: 18 }} label="CPF/CNPJ" color={testCpfOrCnpj == true ? "success" : ""} onKeyUp={(event)=>handleFormatCpf(event)} variant="standard" />
-          <TextField {...register('phone')} id="phone" inputProps={{ maxLength: 16 }}  label="Fone" color={testPhone == true ? "success" : ""} onKeyUp={(event)=>handleFormatPhone(event)} variant="standard" />
+          <TextField {...register('cpf')} id="cpf" inputProps={{ maxLength: 18 }} label="CPF/CNPJ" color={testCpfOrCnpj === true ? "success" : ""} onKeyUp={(event)=>handleFormatCpf(event)} variant="standard" />
+          <TextField {...register('phone')} id="phone" inputProps={{ maxLength: 16 }}  label="Fone" color={testPhone === true ? "success" : ""} onKeyUp={(event)=>handleFormatPhone(event)} variant="standard" />
           <TextField {...register('email')} id="email" label="E-mail" variant="standard" />          
-          <TextField {...register('mobile')} id="mobile" label="Celular" variant="standard" />
+          <TextField {...register('mobile')} id="mobile" label="Celular" variant="standard" onKeyUp={(event)=>handleFormatPhone(event)} />
           <TextField {...register('cep')} id="cep" inputProps={{ maxLength: 9 }} onKeyUp={(event)=>handleFormatCep(event)} label="CEP" variant="standard" />
           <TextField {...register('endereco')} id="endereco" label="Endereço" variant="standard" value={endereco.logradouro || ''} onChangeText={(text) => setEndereco(text)} />
           <TextField {...register('numero')} id="numero" label="Número" variant="standard" />
