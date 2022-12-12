@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function FormDialog(props) {
-  
+  console.log("PROPS: ",props)
   const [editValues, setEditValues] = useState({
         id: props.id,
         dateCreated: props.dateCreated,
