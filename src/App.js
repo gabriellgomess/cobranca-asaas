@@ -43,10 +43,10 @@ const App = () => {
       <MenuBar />
       <Container fixed>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cliente" element={<Cliente />} />
-        <Route path="/cartao" element={<Cartao />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/app-asaas/" element={<Home />} />
+        <Route path="/app-asaas/cliente" element={<Cliente />} />
+        <Route path="/app-asaas/cartao" element={<Cartao />} />
+        <Route path="/app-asaas/about" element={<About />} />
       </Routes>
       </Container>
     </div>

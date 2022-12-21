@@ -89,22 +89,22 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <Link to="/">
+              <Link to="/app-asaas/">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Home</Typography>
                 </MenuItem>
               </Link>
-              <Link to="/cliente">
+              <Link to="/app-asaas/cliente">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Cliente</Typography>
                 </MenuItem>
               </Link>
-              <Link to="/cartao">
+              <Link to="/app-asaas/cartao">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Cartão</Typography>
                 </MenuItem>
               </Link>
-              <Link to="/about">
+              <Link to="/app-asaas/about">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">About</Typography>
                 </MenuItem>
@@ -133,25 +133,25 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
-            <Link to="/">
+            <Link to="/app-asaas/">
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }} >
                 Home
               </Button>
             </Link>
 
-            <Link to="/cliente">
+            <Link to="/app-asaas/cliente">
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }} >
                 Cliente
               </Button>
             </Link>
 
-            <Link to="/cartao">
+            <Link to="/app-asaas/cartao">
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }} >
                 Cartão
               </Button>
             </Link>    
 
-            <Link to="/about">
+            <Link to="/app-asaas/about">
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }} >
                 About
               </Button>

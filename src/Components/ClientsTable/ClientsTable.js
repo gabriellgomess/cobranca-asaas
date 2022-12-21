@@ -60,13 +60,13 @@ export default function ClientsTable(props) {
     <>
     {props.clientes.length > 0 ? (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 800 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <TableCell>Nome</TableCell>
             <TableCell align="center">E-mail</TableCell>
             <TableCell align="center">Telefone</TableCell>
-            <TableCell align="center">Endereço</TableCell>
+            {/* <TableCell align="center">Endereço</TableCell> */}
             <TableCell align="center">Ações</TableCell>
           </TableRow>
         </TableHead>
@@ -79,7 +79,7 @@ export default function ClientsTable(props) {
               <TableCell component="th" scope="row">{row.name}</TableCell>
               <TableCell align="left">{row.email}</TableCell>
               <TableCell align="center">{row.mobilePhone}</TableCell>
-              <TableCell align="center">{row.address}, {row.addressNumber} - {row.province}</TableCell>
+              {/* <TableCell align="center">{row.address}, {row.addressNumber} - {row.province}</TableCell> */}
               <TableCell sx={{ display: 'flex' }} align="center">
                 <ModeEditIcon sx={{ color: 'green', cursor: 'pointer' }} onClick={()=>handleClickRow(row)} />
                 <DeleteIcon sx={{ color: 'tomato', cursor: 'pointer' }} onClick={()=>handleDeleteCliente(row.id)} />
@@ -132,7 +132,9 @@ export default function ClientsTable(props) {
       foreigtCustomer={dialog.foreigtCustomer}
       city={dialog.city}
       state={dialog.state}
-      country={dialog.country}                         
+      country={dialog.country}
+      clientes={props.clientes}
+      setClientes={props.setClientes}                         
   />
     </>
   );
