@@ -13,6 +13,7 @@ import FormLabel from '@mui/material/FormLabel';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './FormDialog.css';
 
 
 export default function FormDialog(props) {
@@ -164,6 +165,7 @@ const handleChangeValues = (values) => {
         open={props.open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+        sx={{width: '100%'}}
       >
         <DialogTitle id="form-dialog-title">Editar</DialogTitle>
         <DialogContent>
