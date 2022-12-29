@@ -1,0 +1,28 @@
+@media only screen and (max-width: 796px){
+    .form-cadastro{
+        width: 100%;
+        display: grid;
+    }
+    .form-input{
+        margin: 8px !important;
+    }
+}
+
+@media only screen and (min-width: 796px) and (max-width: 1200px){
+    .form-cadastro{
+        display: contents;
+        width: 50ch;
+    }
+    .form-input{
+        margin: 8px !important;
+        width: 45%;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .form-input{
+        margin: 8px !important;
+        width: 30%;
+    }
+}
+

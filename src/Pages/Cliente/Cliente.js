@@ -15,6 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { formatToCEP, isCEP, formatToCPFOrCNPJ, isCPFOrCNPJ, formatToPhone, isPhone } from 'brazilian-values';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Cliente.css';
 
 
 function TabPanel(props) {
@@ -166,21 +167,21 @@ const Cliente = () => {
         <ListaClientes />
       </TabPanel>
       <TabPanel value={value} index={1}>      
-        <Box onSubmit={handleSubmit(onSubmit)} component="form" sx={{'& > :not(style)': { m: 1, width: '25ch' }, }} noValidate autoComplete="off" >      
-          <TextField {...register('nome')} id="nome" label="Nome" variant="standard" />
-          <TextField {...register('cpf')} id="cpf" inputProps={{ maxLength: 18 }} label="CPF/CNPJ" color={testCpfOrCnpj === true ? "success" : ""} onKeyUp={(event)=>handleFormatCpf(event)} variant="standard" />
-          <TextField {...register('phone')} id="phone" inputProps={{ maxLength: 16 }}  label="Fone" color={testPhone === true ? "success" : ""} onKeyUp={(event)=>handleFormatPhone(event)} variant="standard" />
-          <TextField {...register('email')} id="email" label="E-mail" variant="standard" />          
-          <TextField {...register('mobile')} id="mobile" label="Celular" variant="standard" onKeyUp={(event)=>handleFormatPhone(event)} />
-          <TextField {...register('cep')} id="cep" inputProps={{ maxLength: 9 }} onKeyUp={(event)=>handleFormatCep(event)} label="CEP" variant="standard" />
-          <TextField {...register('endereco')} id="endereco" label="Endereço" variant="standard" value={endereco.logradouro || ''} onChangeText={(text) => setEndereco(text)} />
-          <TextField {...register('numero')} id="numero" label="Número" variant="standard" />
-          <TextField {...register('complemento')} id="complemento" label="Complemento" variant="standard" />
-          <TextField {...register('bairro')} id="bairro" label="Bairro" variant="standard" value={endereco.bairro || ''} />
-          <TextField {...register('cidade')} id="cidade" label="Cidade" variant="standard" value={endereco.localidade || ''} />
-          <TextField {...register('estado')} id="estado" label="Estado" variant="standard" value={endereco.uf || ''} />
-          <TextField {...register('emailAdicional')} id="emailAdicional" label="Email adicional" variant="standard" />
-          <TextField {...register('observacoes')} id="observacoes" label="Observações" variant="standard" />          
+        <Box className='form-cadastro' onSubmit={handleSubmit(onSubmit)} component="form" noValidate autoComplete="off" >      
+          <TextField className='form-input' {...register('nome')} id="nome" label="Nome" variant="standard" />
+          <TextField className='form-input' {...register('cpf')} id="cpf" inputProps={{ maxLength: 18 }} label="CPF/CNPJ" color={testCpfOrCnpj === true ? "success" : ""} onKeyUp={(event)=>handleFormatCpf(event)} variant="standard" />
+          <TextField className='form-input' {...register('phone')} id="phone" inputProps={{ maxLength: 16 }}  label="Fone" color={testPhone === true ? "success" : ""} onKeyUp={(event)=>handleFormatPhone(event)} variant="standard" />
+          <TextField className='form-input' {...register('email')} id="email" label="E-mail" variant="standard" />          
+          <TextField className='form-input' {...register('mobile')} id="mobile" label="Celular" variant="standard" onKeyUp={(event)=>handleFormatPhone(event)} />
+          <TextField className='form-input' {...register('cep')} id="cep" inputProps={{ maxLength: 9 }} onKeyUp={(event)=>handleFormatCep(event)} label="CEP" variant="standard" />
+          <TextField className='form-input' {...register('endereco')} id="endereco" label="Endereço" variant="standard" value={endereco.logradouro || ''} onChangeText={(text) => setEndereco(text)} />
+          <TextField className='form-input' {...register('numero')} id="numero" label="Número" variant="standard" />
+          <TextField className='form-input' {...register('complemento')} id="complemento" label="Complemento" variant="standard" />
+          <TextField className='form-input' {...register('bairro')} id="bairro" label="Bairro" variant="standard" value={endereco.bairro || ''} />
+          <TextField className='form-input' {...register('cidade')} id="cidade" label="Cidade" variant="standard" value={endereco.localidade || ''} />
+          <TextField className='form-input' {...register('estado')} id="estado" label="Estado" variant="standard" value={endereco.uf || ''} />
+          <TextField className='form-input' {...register('emailAdicional')} id="emailAdicional" label="Email adicional" variant="standard" />
+          <TextField className='form-input' {...register('observacoes')} id="observacoes" label="Observações" variant="standard" />          
           <Box sx={{marginTop: '30px'}}>
           <Button type="submit" variant="contained">Cadastrar</Button>
         </Box>   

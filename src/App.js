@@ -36,6 +36,7 @@ const theme = createTheme({
 
 const App = () => {
   const [clientes, setClientes] = useState([]);
+  
   return (
     <MyContext.Provider value={{ clientes, setClientes }}>
     <ThemeProvider theme={theme}>
