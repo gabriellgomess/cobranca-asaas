@@ -1,0 +1,20 @@
+@media only screen and (min-width: 1000px) {
+    .input--edit{
+        margin: 10px !important;
+        width: 30%;
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1000px) {
+    .input--edit{
+        margin: 10px !important;
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .input--edit{
+        margin: 10px !important;
+        width: 95%;
+    }
+}

@@ -14,11 +14,13 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './FormDialog.css';
-import MyContext from '../../context/myContext';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import { formatToCEP, isCEP, formatToCPFOrCNPJ, isCPFOrCNPJ, formatToPhone, isPhone } from 'brazilian-values';
 
 
 export default function FormDialog(props) {
   const [editValues, setEditValues] = useState();
+  const [testPhone, setTestPhone] = useState(false)
 // No carregamento do componente, seta os valores do cliente para o estado
 useEffect(() => {
     setEditValues({
@@ -52,7 +54,10 @@ useEffect(() => {
       state: props.state,
       country: props.country
     });
+    
 }, [props]);
+
+
 
 //      
 const handleChangeValues = (values) => {
@@ -158,7 +163,19 @@ const handleChangeValues = (values) => {
     })
     handleClose();
   };
-  console.log(editValues);
+  
+  const handleFormatPhone = (event) => {
+    var phone = event.target.value
+    var phoneFormatado = formatToPhone(phone)
+    event.target.value = phoneFormatado
+    if(isPhone(phoneFormatado)){
+      setTestPhone(true)
+    }else{
+      setTestPhone(false)
+    }
+  }
+
+
 
   return (
     <div>
@@ -166,39 +183,39 @@ const handleChangeValues = (values) => {
         open={props.open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
-        sx={{width: '100%'}}
+        maxWidth="lg"
       >
-        <DialogTitle id="form-dialog-title">Editar</DialogTitle>
+        <DialogTitle sx={{display: 'flex', alignItems: 'center'}} id="form-dialog-title">Editar dados do cliente <ManageAccountsIcon sx={{marginLeft: '10px'}} /></DialogTitle>
         <DialogContent>
-            <TextField disabled margin="dense" id="id" label="id" defaultValue={props.id} type="text" fullWidth />
-            <TextField autoFocus margin="dense" id="name" label="Nome" defaultValue={props.name} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="email" label="Email" defaultValue={props.email} type="email" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="dateCreated" label="Desde" defaultValue={props.dateCreated} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="company" label="Empresa" defaultValue={props.company} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="phone" label="Telefone" defaultValue={props.phone} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="mobilePhone" label="Celular" defaultValue={props.mobilePhone} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="address" label="Endereço" defaultValue={props.address} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="addressNumber" label="Número" defaultValue={props.addressNumber} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="complement" label="Complemento" defaultValue={props.complement} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="province" label="Bairro" defaultValue={props.province} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="postalCode" label="CEP" defaultValue={props.postalCode} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="cpfCnpj" label="CPF/CNPJ" defaultValue={props.cpfCnpj} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="personType" label="Tipo de Pessoa" defaultValue={props.personType} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="deleted" label="Excluido" defaultValue={props.deleted} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="additionalEmails" label="Emails Adicionais" defaultValue={props.additionalEmails} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="externalReference" label="Referência Externa" defaultValue={props.externalReference} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="notificationsDisabled" label="Notificações Desabilitadas" defaultValue={props.notificationsDisabled} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="observations" label="Observações" defaultValue={props.observations} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="municipalInscription" label="Inscrição Municipal" defaultValue={props.municipalInscription} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="stateInscription" label="Inscrição Estadual" defaultValue={props.stateInscription} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="canDelete" label="Pode Excluir" defaultValue={props.canDelete} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="cannotDeleteReason" label="Motivo Não Excluir" defaultValue={props.cannotDeleteReason} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="canEdit" label="Pode Editar" defaultValue={props.canEdit} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="cannotEditReason" label="Motivo Não Editar" defaultValue={props.cannotEditReason} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="foreigtCustomer" label="Cliente Estrangeiro" defaultValue={props.foreigtCustomer} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="city" label="Cidade" defaultValue={props.city} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="state" label="Estado" defaultValue={props.state} type="text" onChange={handleChangeValues} fullWidth />
-            <TextField margin="dense" id="country" label="País" defaultValue={props.country} type="text" onChange={handleChangeValues} fullWidth />
+            <TextField className="input--edit" variant="standard" disabled margin="dense" id="id" label="id" defaultValue={props.id} type="text" />
+            <TextField className="input--edit" variant="standard" autoFocus margin="dense" id="name" label="Nome" defaultValue={props.name} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="email" label="Email" defaultValue={props.email} type="email" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="dateCreated" label="Desde" defaultValue={props.dateCreated} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="company" label="Empresa" defaultValue={props.company} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="phone" label="Telefone" defaultValue={props.phone} type="text" onChange={handleChangeValues} onKeyUp={(event)=>handleFormatPhone(event)} onClick={(event)=>handleFormatPhone(event)}/>
+            <TextField className="input--edit" variant="standard" margin="dense" id="mobilePhone" label="Celular" defaultValue={props.mobilePhone} type="text" onChange={handleChangeValues} onKeyUp={(event)=>handleFormatPhone(event)} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="address" label="Endereço" defaultValue={props.address} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="addressNumber" label="Número" defaultValue={props.addressNumber} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="complement" label="Complemento" defaultValue={props.complement} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="province" label="Bairro" defaultValue={props.province} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="postalCode" label="CEP" defaultValue={props.postalCode} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="cpfCnpj" label="CPF/CNPJ" defaultValue={props.cpfCnpj} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="personType" label="Tipo de Pessoa" defaultValue={props.personType} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="deleted" label="Excluido" defaultValue={props.deleted} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="additionalEmails" label="Emails Adicionais" defaultValue={props.additionalEmails} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="externalReference" label="Referência Externa" defaultValue={props.externalReference} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="notificationsDisabled" label="Notificações Desabilitadas" defaultValue={props.notificationsDisabled} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="observations" label="Observações" defaultValue={props.observations} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="municipalInscription" label="Inscrição Municipal" defaultValue={props.municipalInscription} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="stateInscription" label="Inscrição Estadual" defaultValue={props.stateInscription} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="canDelete" label="Pode Excluir" defaultValue={props.canDelete} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="cannotDeleteReason" label="Motivo Não Excluir" defaultValue={props.cannotDeleteReason} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="canEdit" label="Pode Editar" defaultValue={props.canEdit} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="cannotEditReason" label="Motivo Não Editar" defaultValue={props.cannotEditReason} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="foreigtCustomer" label="Cliente Estrangeiro" defaultValue={props.foreigtCustomer} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="city" label="Cidade" defaultValue={props.city} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="state" label="Estado" defaultValue={props.state} type="text" onChange={handleChangeValues} />
+            <TextField className="input--edit" variant="standard" margin="dense" id="country" label="País" defaultValue={props.country} type="text" onChange={handleChangeValues} />
          
         <FormControl>
             <FormLabel id="sexo">Gênero</FormLabel>
