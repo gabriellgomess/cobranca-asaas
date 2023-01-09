@@ -45,6 +45,7 @@ const FormCartao = () => {
 
     return (
         <div className="cartao">
+            <Card sx={{ minWidth: 350, padding: 5, background: '#e3f2fd', marginBottom: '30px' }}>
             <Cards
             locale={locale}
             cvc={card.cvc}
@@ -53,7 +54,8 @@ const FormCartao = () => {
             name={card.name}
             number={card.number}
             />
-            <Card sx={{ minWidth: 500, padding: 5, background: '#e3f2fd' }}>
+            </Card>
+            <Card sx={{ minWidth: 350, padding: 5, background: '#e3f2fd' }}>
             <Box className="container-form-card" onSubmit={handleSubmit(onSubmit)} component="form"  noValidate autoComplete="off" > 
                 <TextField type='tel' {...register('number')} id="number" label="Número do Cartão" variant="standard" onChange={handleInputChange} onFocus={handleInputFocus} />
                 <TextField type='text' {...register('name')} id="name" label="Nome do Titular" variant="standard" onChange={handleInputChange} onFocus={handleInputFocus} />

@@ -1,6 +1,8 @@
 .cartao{
     display: flex;
     margin-top: 80px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .container-form-card{

@@ -6,6 +6,7 @@ import Home from './Pages/Home/Home';
 import About from './Pages/About/About';
 import Cliente from './Pages/Cliente/Cliente';
 import Cartao from './Pages/Cartao/Cartao';
+import Cobranca from './Pages/Cobranca/Cobranca';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
@@ -46,6 +47,7 @@ const App = () => {
       <Routes>
         <Route path="/app-asaas/" element={<Home />} />
         <Route path="/app-asaas/cliente" element={<Cliente />} />
+        <Route path="/app-asaas/cobranca" element={<Cobranca />} />
         <Route path="/app-asaas/cartao" element={<Cartao />} />
         <Route path="/app-asaas/about" element={<About />} />
       </Routes>

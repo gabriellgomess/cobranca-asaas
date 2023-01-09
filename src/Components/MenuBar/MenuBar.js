@@ -99,6 +99,11 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center">Cliente</Typography>
                 </MenuItem>
               </Link>
+              <Link to="/app-asaas/cobranca">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Cobrança</Typography>
+                </MenuItem>
+              </Link>
               <Link to="/app-asaas/cartao">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Cartão</Typography>
@@ -142,6 +147,12 @@ function ResponsiveAppBar() {
             <Link to="/app-asaas/cliente">
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }} >
                 Cliente
+              </Button>
+            </Link>
+
+            <Link to="/app-asaas/cobranca">
+              <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }} >
+                Cobrança
               </Button>
             </Link>
 
